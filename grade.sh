@@ -33,20 +33,16 @@ fi
 javac -cp $CPATH TestListExamples.java
 java -cp $CPATH org.junit.runner.JUnitCore TestListExamples > testResult.txt
 
-if [grep -c "failure" testResult.txt]
+grep "failure" testResult.txt > count.txt
+if [ -s count.txt ] 
 then 
-    echo "Test Successful"
-    exit
-fi
-
-if [find -type f -empty]
-then
-    echo "Empty Files"
+    echo "Test Failed"
+    echo "Score: 0"
     exit
 fi
 
 echo "All Tests Passed!"
-
+echo "Scores: 1/1"
 
 # Draw a picture/take notes on the directory structure that's set up after
 # getting to this point
